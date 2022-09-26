@@ -9,4 +9,15 @@ spring:
         - id: auth-service
           uri: ${urls.auth-service}
           predicates:
-            - Path=/api/auth/**
+            - Path=/api/auth/login, /api/auth/register
+
+        - id: esir-service
+          uri: ${urls.esir-service}
+          predicates:
+            - Path=/api/esir/**
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${urls.auth-service}/api/auth/keys/jwks
